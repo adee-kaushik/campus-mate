@@ -16,8 +16,8 @@ export const Route = createFileRoute("/about")({
 function About() {
   const blocks = [
     { h: "The problem", p: "Students track classes in a timetable, assignments in chat groups, notes in files and revision in notebooks. It's easy to miss a deadline or forget what to study next." },
-    { h: "Our solution", p: "CampusMate brings a daily study plan, assignment deadlines, revision notes, a quick quiz and a class timetable into one simple dashboard." },
-    { h: "How your data is stored", p: "Everything is saved in this browser on this device. No login, no server. Clearing browser data will remove it — cloud sync is a future improvement." },
+    { h: "Our solution", p: "CampusMate brings a daily study plan, assignment deadlines, revision notes and a class timetable into one simple dashboard." },
+    { h: "How your data is stored", p: "Planner, notes and timetable are saved in this browser on this device, so clearing browser data will remove them. Shared assignments and accounts (student and teacher login) are stored securely online." },
     { h: "Privacy", p: "Use fictional or non-sensitive data. CampusMate doesn't collect personal information and doesn't guarantee grades or academic outcomes." },
   ];
   return (

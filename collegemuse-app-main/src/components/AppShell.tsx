@@ -1,18 +1,19 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import { GraduationCap, LayoutDashboard, CalendarCheck, ClipboardList, NotebookPen, Lightbulb, CalendarDays, Info } from "lucide-react";
+import { useAccount } from "./AccountProvider";
+import { GraduationCap, LayoutDashboard, CalendarCheck, ClipboardList, NotebookPen, CalendarDays, Info, LogIn, UserRound } from "lucide-react";
 
 const nav = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
   { to: "/planner", label: "Planner", icon: CalendarCheck },
   { to: "/assignments", label: "Assignments", icon: ClipboardList },
   { to: "/notes", label: "Notes", icon: NotebookPen },
-  { to: "/quiz", label: "Quiz", icon: Lightbulb },
   { to: "/timetable", label: "Timetable", icon: CalendarDays },
   { to: "/about", label: "About", icon: Info },
 ] as const;
 
 export function AppShell({ children }: { children: ReactNode }) {
+  const { user, ready } = useAccount();
   return (
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-20 border-b bg-background/85 backdrop-blur">
@@ -30,6 +31,9 @@ export function AppShell({ children }: { children: ReactNode }) {
               </Link>
             ))}
           </nav>
+          <Link to={user ? "/dashboard" : "/auth"} className="ml-auto inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground md:ml-0">
+            {user ? <UserRound className="h-4 w-4" /> : <LogIn className="h-4 w-4" />}{!ready ? "Account" : user ? "My account" : "Login"}
+          </Link>
         </div>
       </header>
       <main className="mx-auto max-w-6xl px-4 pb-28 pt-6 md:pb-12">{children}</main>

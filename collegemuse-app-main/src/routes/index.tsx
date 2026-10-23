@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CalendarCheck, ClipboardList, NotebookPen, Lightbulb, CheckCircle2, Circle } from "lucide-react";
+import { CalendarCheck, ClipboardList, NotebookPen, CheckCircle2, Circle } from "lucide-react";
 import { useLocal, seeds, todayISO, type Task, type Assignment, type Note } from "@/lib/store";
 import { cardCls, PriorityBadge, Empty } from "@/components/AppShell";
 
@@ -7,7 +7,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "CampusMate — Your smart study & campus assistant" },
-      { name: "description", content: "Plan study tasks, track assignments, save notes and quiz yourself — all in one student dashboard." },
+      { name: "description", content: "Plan study tasks, track assignments, save notes and follow your timetable — all in one student dashboard." },
       { property: "og:title", content: "CampusMate — Your smart study & campus assistant" },
       { property: "og:description", content: "One simple dashboard for student tasks, deadlines, notes and revision." },
     ],
@@ -36,12 +36,11 @@ function Dashboard() {
         <p className="mt-2 text-sm font-semibold">{pct}% complete</p>
       </section>
 
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
         {[
           { to: "/planner", label: "Today's tasks", value: today.length, icon: CalendarCheck },
           { to: "/assignments", label: "Pending assignments", value: pending.length, icon: ClipboardList },
           { to: "/notes", label: "Saved notes", value: notes.length, icon: NotebookPen },
-          { to: "/quiz", label: "Quick quiz", value: "Start", icon: Lightbulb },
         ].map((s) => (
           <Link key={s.to} to={s.to} className={`${cardCls} transition hover:-translate-y-0.5`}>
             <s.icon className="h-5 w-5 text-primary" />
